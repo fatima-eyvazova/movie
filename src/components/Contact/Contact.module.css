@@ -1,0 +1,26 @@
+.contact {
+}
+.contact .container {
+  padding-top: 75px;
+  padding-bottom: 75px;
+  border-width: 0px 0px 0px 0px;
+}
+.contact .container .info {
+}
+.contact .container .info .help {
+  color: #4a4a4a;
+  text-align: center;
+  font-family: Roboto Condensed, latin-ext;
+  font-weight: 300;
+  line-height: 1.4em;
+  margin: 0 0 10px 0;
+  font-size: 24px;
+  letter-spacing: 1px;
+}
+
+.contact .container .info .number {
+  color: #ec7532;
+  font-size: 46px;
+  text-align: center;
+  margin: 0 0 20px 0;
+}

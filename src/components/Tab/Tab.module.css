@@ -1,0 +1,62 @@
+.tabComponent {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.tabComponent .tab .box .tabs .tab {
+  color: #ec7532;
+}
+
+.tab .tabPanel .tabItem {
+  display: flex;
+  margin-bottom: 40px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid #d8d8d8;
+}
+.tab .tabPanel .tabItem .tabImg {
+  width: 16%;
+}
+.tab .tabPanel .tabItem .tabImg img {
+  width: 170px;
+  height: 214px;
+}
+.tab .tabPanel .tabItem .info {
+  width: 84%;
+}
+.tab .tabPanel .tabItem .info .type {
+  font-size: 14px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #fbbd61;
+}
+.tab .tabPanel .tabItem .info h3 {
+  font-family: Roboto Condensed, latin-ext;
+  font-weight: 300;
+  margin: 15px 0px;
+  font-size: 24px;
+  letter-spacing: 1px;
+  line-height: 1.4em;
+  color: #101010;
+}
+.tab .tabPanel .tabItem .info .description {
+  font: Roboto Condensed latin-ext regular;
+  color: #717171;
+  font-size: 16px;
+}
+.tab .tabPanel .tabItem .info .synopsis {
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
+  font-family: "Roboto Condensed", sans-serif;
+  line-height: 1.42857143;
+  margin: 15px 0px;
+  color: #ec7532;
+}
+.tab .tabPanel .tabItem .info .synopsis span {
+  font-size: 12px;
+  position: relative;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+}
+.tab .tabPanel .tabItem .info .synopsis .icon {
+  width: 30px;
+  height: 13px;
+}
