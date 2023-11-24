@@ -1,16 +1,21 @@
+import React, { useEffect, useState } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import SwiperCore from "swiper";
+import { IoIosPlay } from "react-icons/io";
+import { Pagination } from "@mui/material";
+import "swiper/css";
+import "swiper/css/free-mode";
+import "swiper/css/navigation";
+import "swiper/css/thumbs";
+import Footer from "../../components/Footer/Footer";
 import Header from "../../components/Header/Header";
 import styles from "../Home/Home.module.css";
-import React, { useRef, useState } from "react";
-import Footer from "../../components/Footer/Footer";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/pagination";
-import { useEffect } from "react";
-import { IoIosPlay } from "react-icons/io";
 import NewFilmCard from "../../components/NewFilmCard/NewFilmCard";
 import Tab from "../../components/Tab/Tab";
 import Contact from "../../components/Contact/Contact";
+import ComingSoon from "../../components/ComingSoon/ComingSoon";
+
+// SwiperCore.use([Pagination]);
 
 const Home = () => {
   const pagination = {
@@ -22,21 +27,28 @@ const Home = () => {
 
   const [records, setRecords] = useState([]);
 
-  const url = "https://imdb8.p.rapidapi.com/auto-complete?q=game%20of%20thr";
-  const options = {
-    method: "GET",
-    headers: {
-      "X-RapidAPI-Key": "90af22bfc3msh10cade2264e930dp1851f2jsna892e7869370",
-      "X-RapidAPI-Host": "imdb8.p.rapidapi.com",
-    },
-  };
+  const url =
+    "https://api.themoviedb.org/3/movie/popular?language=en-US&page=1&api_key=25fd04690e6e712dde58ac89e191a8a4";
+
+  // const options = {
+  //   method: "GET",
+  //   url: "https://movies-tv-shows-database.p.rapidapi.com/",
+  //   params: {
+  //     movieid: "tt1375666",
+  //   },
+  //   headers: {
+  //     Type: "get-movie-details",
+  //     "X-RapidAPI-Key": "90af22bfc3msh10cade2264e930dp1851f2jsna892e7869370",
+  //     "X-RapidAPI-Host": "movies-tv-shows-database.p.rapidapi.com",
+  //   },
+  // };
 
   useEffect(() => {
-    fetch(url, options)
+    fetch(url)
       .then((response) => response.json())
       .then((result) => {
         console.log(result);
-        setRecords(result.d);
+        setRecords(result.results);
       })
       .catch((error) => {
         console.error(error);
@@ -49,18 +61,25 @@ const Home = () => {
       <section className={styles.trailer}>
         <div className={styles.container}>
           <Swiper pagination={pagination} className={styles.mySwiper}>
-            {records.map((list, index) => (
+            {/* {records.length ? ( */}
+            {records?.map((list, index) => (
               <SwiperSlide key={index} className={styles.SwiperSlide}>
                 <div className={styles.SwiperItem}>
-                  <img className={styles.image} src={list?.i?.imageUrl} />
+                  <img
+                    className={styles.image}
+                    src={`https://image.tmdb.org/t/p/original${list?.backdrop_path}`}
+                    alt={list?.title}
+                  />
                   <div className={styles.item}>
                     <span className={styles.title}>
                       Action, Adventure, Sci-Fi
                     </span>
-                    <h1>{list?.l}</h1>
-                    <p className={styles.description}>{list?.s}</p>
+                    <h1>{list?.title}</h1>
+                    <p className={styles.description}>{list?.overview}</p>
                     <div className={styles.buttons}>
-                      <span className={styles.certificate}>{list?.rank}</span>
+                      <span className={styles.certificate}>
+                        {list?.vote_count}
+                      </span>
                       <span className={styles.button}>
                         <IoIosPlay className={styles.play} />
                         <span>Play trailer</span>
@@ -70,6 +89,9 @@ const Home = () => {
                 </div>
               </SwiperSlide>
             ))}
+            {/* ) : (
+              <p>Something went wrong!</p>
+             )} */}
           </Swiper>
         </div>
       </section>
@@ -84,6 +106,7 @@ const Home = () => {
         </div>
       </section>
       <Tab item={records} />
+      {/* <ComingSoon /> */}
       <Contact />
       <Footer />
     </div>

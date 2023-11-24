@@ -1,10 +1,10 @@
-// NewFilmCard.jsx
 import React from "react";
 import styles from "../NewFilmCard/NewFilmCard.module.css";
 import { FaStar, FaRegPlayCircle } from "react-icons/fa";
 
 const NewFilmCard = ({ item }) => {
-  const displayedItems = item.slice(4, 7);
+  const displayedItems = Array.isArray(item) ? item.slice(4, 7) : [];
+
   const starCount = 5;
   const stars = Array.from({ length: starCount }, (_, index) => index + 1);
 
@@ -14,9 +14,11 @@ const NewFilmCard = ({ item }) => {
         {displayedItems.map((movie, index) => (
           <div key={index} className={styles.item}>
             <figure>
-              <img src={movie?.i?.imageUrl} alt="image-movies" />
+              <img
+                src={`https://image.tmdb.org/t/p/original${movie?.poster_path}`}
+              />
             </figure>
-            <h4 className={styles.title}>{movie.l}</h4>
+            <h4 className={styles.title}>{movie.title}</h4>
             <div className={styles.stars}>
               {stars.map((starIndex) => (
                 <FaStar key={starIndex} className={styles.star} />

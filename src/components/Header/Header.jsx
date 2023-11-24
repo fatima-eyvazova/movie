@@ -2,6 +2,7 @@
 import styles from "../Header/Header.module.css";
 import logo from "../../assets/images/logo.svg";
 import { BsFillTelephoneFill } from "react-icons/bs";
+// import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
@@ -26,6 +27,7 @@ const Header = () => {
               <li className={styles.item}>Contact us</li>
             </ul>
           </div>
+          {/* <Link to="/action">Hello</Link>  */}
         </div>
       </div>
     </div>

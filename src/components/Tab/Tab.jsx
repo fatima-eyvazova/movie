@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "../Tab/Tab.module.css";
 // material ui
 import PropTypes from "prop-types";
@@ -10,7 +10,9 @@ import Box from "@mui/material/Box";
 import { FaChevronRight } from "react-icons/fa";
 
 const TabItem = ({ item }) => {
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = useState(0);
+
+  const movies = Array.isArray(item) ? item : [];
 
   const daysOfWeek = ["Mon", "Today", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
@@ -73,7 +75,7 @@ const TabItem = ({ item }) => {
             ))}
           </Tabs>
         </Box>
-        {item.map((item, index) => (
+        {movies.map((item, index) => (
           <CustomTabPanel
             value={value}
             index={index}
@@ -82,12 +84,15 @@ const TabItem = ({ item }) => {
           >
             <div className={styles.tabItem}>
               <div className={styles.tabImg}>
-                <img src={item?.i?.imageUrl} alt="Tab" />
+                <img
+                  src={`https://image.tmdb.org/t/p/original${item?.poster_path}`}
+                  alt="Tab"
+                />
               </div>
               <div className={styles.info}>
                 <div className={styles.type}>Thriller, Horror </div>
-                <h3>{item?.l}</h3>
-                <p className={styles.description}>{item?.s}</p>
+                <h3>{item?.title}</h3>
+                <p className={styles.description}>{item?.overview}</p>
                 <p className={styles.synopsis}>
                   <span>FULL SYNOPSIS</span>
                   <FaChevronRight className={styles.icon} />
