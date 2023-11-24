@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useLayoutEffect, useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/free-mode";
@@ -9,11 +8,22 @@ import "swiper/css/thumbs";
 
 // import required modules
 import { FreeMode, Navigation, Thumbs } from "swiper/modules";
+import { FaStar } from "react-icons/fa";
+import { MdOutlineDateRange, MdArrowForwardIos } from "react-icons/md";
 
 import styles from "../ComingSoon/ComingSoon.module.css";
 
-const ComingSoon = () => {
+const ComingSoon = ({ item }) => {
+  const swiper1Ref = useRef(null);
+  const swiper2Ref = useRef();
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
+  useLayoutEffect(() => {
+    if (swiper1Ref.current !== null) {
+      swiper1Ref.current.controller.control = swiper2Ref.current;
+    }
+  }, []);
+  const starCount = 5;
+  const stars = Array.from({ length: starCount }, (_, index) => index + 1);
 
   return (
     <div className={styles.ComingSoon}>
@@ -27,42 +37,52 @@ const ComingSoon = () => {
               "--swiper-navigation-color": "#fff",
               "--swiper-pagination-color": "#fff",
             }}
+            onSwiper={(swiper) => {
+              if (swiper1Ref.current !== null) {
+                swiper1Ref.current = swiper;
+              }
+            }}
             spaceBetween={10}
             navigation={true}
-            thumbs={{ swiper: thumbsSwiper }}
+            thumbs={{
+              swiper:
+                thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null,
+            }}
             modules={[FreeMode, Navigation, Thumbs]}
-            className="mySwiper2"
+            className={styles.mySwiper2}
           >
-            <SwiperSlide>
-              <img src="https://swiperjs.com/demos/images/nature-1.jpg" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img src="https://swiperjs.com/demos/images/nature-2.jpg" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img src="https://swiperjs.com/demos/images/nature-3.jpg" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img src="https://swiperjs.com/demos/images/nature-4.jpg" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img src="https://swiperjs.com/demos/images/nature-5.jpg" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img src="https://swiperjs.com/demos/images/nature-6.jpg" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img src="https://swiperjs.com/demos/images/nature-7.jpg" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img src="https://swiperjs.com/demos/images/nature-8.jpg" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img src="https://swiperjs.com/demos/images/nature-9.jpg" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img src="https://swiperjs.com/demos/images/nature-10.jpg" />
-            </SwiperSlide>
+            {item.map((item, index) => (
+              <SwiperSlide key={index} className={styles.element}>
+                <div className={styles.container}>
+                  <div className={styles.info}>
+                    <span className={styles.title}>
+                      Fantasy, Sci-fi, Action
+                    </span>
+                    <h3 className={styles.headingT}>{item.title}</h3>
+                    <div className={styles.dataStars}>
+                      {stars.map((starIndex) => (
+                        <FaStar key={starIndex} className={styles.star} />
+                      ))}
+                      <span>
+                        <MdOutlineDateRange className={styles.date} />
+                        {item.release_date}
+                      </span>
+                    </div>
+                    <p className={styles.description}>{item.overview}</p>
+                    <div className={styles.moreInfo}>
+                      <span>More info </span>
+                      <MdArrowForwardIos className={styles.arrow} />
+                    </div>
+                  </div>
+                  <div>
+                    <img
+                      style={{ height: "351px", width: "500px" }}
+                      src={`https://image.tmdb.org/t/p/original${item?.poster_path}`}
+                    />
+                  </div>
+                </div>
+              </SwiperSlide>
+            ))}
           </Swiper>
           <Swiper
             onSwiper={setThumbsSwiper}
@@ -73,36 +93,14 @@ const ComingSoon = () => {
             modules={[FreeMode, Navigation, Thumbs]}
             className="mySwiper"
           >
-            <SwiperSlide>
-              <img src="https://swiperjs.com/demos/images/nature-1.jpg" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img src="https://swiperjs.com/demos/images/nature-2.jpg" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img src="https://swiperjs.com/demos/images/nature-3.jpg" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img src="https://swiperjs.com/demos/images/nature-4.jpg" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img src="https://swiperjs.com/demos/images/nature-5.jpg" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img src="https://swiperjs.com/demos/images/nature-6.jpg" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img src="https://swiperjs.com/demos/images/nature-7.jpg" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img src="https://swiperjs.com/demos/images/nature-8.jpg" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img src="https://swiperjs.com/demos/images/nature-9.jpg" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img src="https://swiperjs.com/demos/images/nature-10.jpg" />
-            </SwiperSlide>
+            {item.map((item, index) => (
+              <SwiperSlide key={index}>
+                <img
+                  style={{ height: "203px", width: "327px" }}
+                  src={`https://image.tmdb.org/t/p/original${item?.poster_path}`}
+                />
+              </SwiperSlide>
+            ))}
           </Swiper>
         </>
       </div>

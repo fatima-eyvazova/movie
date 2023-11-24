@@ -106,7 +106,7 @@ const Home = () => {
         </div>
       </section>
       <Tab item={records} />
-      {/* <ComingSoon /> */}
+      <ComingSoon item={records} />
       <Contact />
       <Footer />
     </div>
