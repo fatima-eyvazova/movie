@@ -27,6 +27,8 @@ const Home = () => {
 
   const [records, setRecords] = useState([]);
 
+  const movies = records.slice(0, 3);
+
   const url =
     "https://api.themoviedb.org/3/movie/popular?language=en-US&page=1&api_key=25fd04690e6e712dde58ac89e191a8a4";
 
@@ -62,7 +64,7 @@ const Home = () => {
         <div className={styles.container}>
           <Swiper pagination={pagination} className={styles.mySwiper}>
             {/* {records.length ? ( */}
-            {records?.map((list, index) => (
+            {movies?.map((list, index) => (
               <SwiperSlide key={index} className={styles.SwiperSlide}>
                 <div className={styles.SwiperItem}>
                   <img

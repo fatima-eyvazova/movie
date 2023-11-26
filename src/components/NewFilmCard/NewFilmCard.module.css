@@ -16,31 +16,47 @@
   margin-bottom: 20px;
   border-radius: 10px;
 }
-/* .NewFilmCard .container .item .readMore {
+.NewFilmCard .container .item:hover .readMore {
   position: absolute;
   z-index: 1;
   display: flex;
-  width: 100%;
-  height: 100%;
   transition: 0.3s;
   transition-delay: 0.1s;
-  bottom: 50%;
-  left: 40%;
-  background: #fbbd61;
-  opacity: 0;
+  width: 270px !important;
+  height: 340px !important;
+  z-index: 110;
+  bottom: 65px;
+  background: linear-gradient(to right, #ec7532 0%, #fbbd61 100%);
+  opacity: 0.9;
+  transform: skewX(30deg);
 }
 .NewFilmCard .container .item:hover .readMore {
+  width: 270px;
+  height: 340px;
   opacity: 1;
-  transition: opacity 0.3s ease-in-out;
-} */
-/* .NewFilmCard .container .item::before {
-  width: 200%;
-  background: linear-gradient(to right, #ec7532 0%, #fbbd61 100%);
-} */
+  position: absolute;
+  bottom: 64px;
+  left: 0;
+}
+.NewFilmCard .container .item::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  box-shadow: 0 0 20px 0 #fbbd61;
+  /* background-color: #fbbd61; */
+  width: 0;
+  height: 0;
+  opacity: 0;
+  transition: 0.5s ease;
+}
 .NewFilmCard .container .item figure img {
   width: 270px;
   height: 340px;
+  position: relative;
+  transition: 0.5s ease-in-out;
 }
+
 .NewFilmCard .container .item .title {
   font-size: 18px;
   width: 270px;
@@ -49,6 +65,17 @@
   letter-spacing: 2px;
   font-family: Roboto Condensed, latin-ext;
   font-weight: 300;
+}
+.NewFilmCard .container .item .readMore {
+  width: 270px;
+  height: 340px;
+  position: absolute;
+  z-index: 110;
+  bottom: 123px;
+}
+.NewFilmCard .container .item .readMore .element {
+  z-index: 111;
+  position: relative;
 }
 
 .NewFilmCard .container .item .stars .star {

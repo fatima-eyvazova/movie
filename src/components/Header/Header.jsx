@@ -1,12 +1,36 @@
-// import React from "react";
+import React, { useState, useEffect } from "react";
 import styles from "../Header/Header.module.css";
 import logo from "../../assets/images/logo.svg";
 import { BsFillTelephoneFill } from "react-icons/bs";
-// import { Link } from "react-router-dom";
 
 const Header = () => {
+  const [selectedItem, setSelectedItem] = useState(null);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 100) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+  const navbarStyles = isScrolled ? { backgroundColor: "black" } : {};
+  const navbarBottomStyles = isScrolled ? { display: "none" } : {};
+
+  const handleMenuItemClick = (index) => {
+    setSelectedItem(index);
+  };
+
   return (
-    <div className={styles.header}>
+    <div className={styles.header} style={navbarStyles}>
       <div className={styles.container}>
         <div className={styles.top}>
           <span className={styles.tel}>
@@ -20,11 +44,19 @@ const Header = () => {
           </figure>
           <div className={styles.navigation}>
             <ul className={styles.menu}>
-              <li className={styles.item}>Home</li>
-              <li className={styles.item}>What’s on</li>
-              <li className={styles.item}>News</li>
-              <li className={styles.item}>Shortcodes</li>
-              <li className={styles.item}>Contact us</li>
+              {["Home", "What’s on", "News", "Shortcodes", "Contact us"].map(
+                (item, index) => (
+                  <li
+                    key={index}
+                    className={`${styles.item} ${
+                      selectedItem === index ? styles.selected : ""
+                    }`}
+                    onClick={() => handleMenuItemClick(index)}
+                  >
+                    {item}
+                  </li>
+                )
+              )}
             </ul>
           </div>
           {/* <Link to="/action">Hello</Link>  */}

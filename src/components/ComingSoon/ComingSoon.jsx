@@ -1,4 +1,4 @@
-import React, { useState, useLayoutEffect, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 // Import Swiper styles
 import "swiper/css";
@@ -17,7 +17,7 @@ const ComingSoon = ({ item }) => {
   const swiper1Ref = useRef(null);
   const swiper2Ref = useRef();
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (swiper1Ref.current !== null) {
       swiper1Ref.current.controller.control = swiper2Ref.current;
     }
@@ -91,12 +91,12 @@ const ComingSoon = ({ item }) => {
             freeMode={true}
             watchSlidesProgress={true}
             modules={[FreeMode, Navigation, Thumbs]}
-            className="mySwiper"
+            className={styles.mySwiper}
           >
             {item.map((item, index) => (
               <SwiperSlide key={index}>
                 <img
-                  style={{ height: "203px", width: "327px" }}
+                  style={{ height: "203px", width: "362px" }}
                   src={`https://image.tmdb.org/t/p/original${item?.poster_path}`}
                 />
               </SwiperSlide>

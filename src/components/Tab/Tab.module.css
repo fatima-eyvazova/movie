@@ -8,6 +8,7 @@
 }
 
 .tab .tabPanel .tabItem {
+  text-decoration: none;
   display: flex;
   margin-bottom: 40px;
   padding-bottom: 40px;

@@ -25,7 +25,7 @@ const NewFilmCard = ({ item }) => {
               ))}
             </div>
             <div className={styles.readMore}>
-              <div>
+              <div className={styles.element}>
                 <FaRegPlayCircle className={styles.icon} />
                 <p>Read More</p>
               </div>

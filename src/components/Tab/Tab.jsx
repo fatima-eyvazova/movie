@@ -8,6 +8,7 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 // react i
 import { FaChevronRight } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const TabItem = ({ item }) => {
   const [value, setValue] = useState(0);
@@ -82,7 +83,7 @@ const TabItem = ({ item }) => {
             key={index}
             className={styles.tabPanel}
           >
-            <div className={styles.tabItem}>
+            <Link to={`/product/${item.id}`} className={styles.tabItem}>
               <div className={styles.tabImg}>
                 <img
                   src={`https://image.tmdb.org/t/p/original${item?.poster_path}`}
@@ -98,7 +99,7 @@ const TabItem = ({ item }) => {
                   <FaChevronRight className={styles.icon} />
                 </p>
               </div>
-            </div>
+            </Link>
           </CustomTabPanel>
         ))}
       </Box>
