@@ -3,19 +3,7 @@
   padding: 0;
   box-sizing: border-box;
 }
-/* .homePage {
-}
-.homePage .trailer {
-}
-.homePage .trailer .container {
-}
-.homePage .trailer .container .mySwiper {
-}
 
-.homePage .trailer .container .mySwiper .SwiperSlide {
-}
-.homePage .trailer .container .mySwiper .SwiperSlide .SwiperItem {
-}  */
 .homePage .trailer .container .mySwiper .SwiperSlide .SwiperItem .image {
   width: 100vw;
   height: 100vh;

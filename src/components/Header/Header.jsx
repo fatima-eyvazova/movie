@@ -26,7 +26,9 @@ const Header = () => {
   const navbarBottomStyles = isScrolled ? { display: "none" } : {};
 
   const handleMenuItemClick = (index) => {
-    setSelectedItem(index);
+    setSelectedItem((prevSelectedItem) =>
+      prevSelectedItem === index ? null : index
+    );
   };
 
   return (
@@ -44,7 +46,7 @@ const Header = () => {
           </figure>
           <div className={styles.navigation}>
             <ul className={styles.menu}>
-              {["Home", "What’s on", "News", "Shortcodes", "Contact us"].map(
+              {["home", "What’s on", "News", "Shortcodes", "Contact us"].map(
                 (item, index) => (
                   <li
                     key={index}
@@ -59,7 +61,6 @@ const Header = () => {
               )}
             </ul>
           </div>
-          {/* <Link to="/action">Hello</Link>  */}
         </div>
       </div>
     </div>
