@@ -8,7 +8,7 @@
 .NewFilmCard .container {
   display: flex;
   gap: 20px;
-  width: 80%;
+  width: 86.5%;
 }
 .NewFilmCard .container .item {
   position: relative;
@@ -16,45 +16,82 @@
   margin-bottom: 20px;
   border-radius: 10px;
 }
-.NewFilmCard .container .item:hover .readMore {
-  position: absolute;
-  z-index: 1;
-  display: flex;
-  transition: 0.3s;
-  transition-delay: 0.1s;
-  width: 270px !important;
-  height: 340px !important;
-  z-index: 110;
-  bottom: 65px;
-  background: linear-gradient(to right, #ec7532 0%, #fbbd61 100%);
-  opacity: 0.9;
-  transform: skewX(30deg);
-}
-.NewFilmCard .container .item:hover .readMore {
-  width: 270px;
-  height: 340px;
-  opacity: 1;
-  position: absolute;
-  bottom: 64px;
-  left: 0;
-}
-.NewFilmCard .container .item::before {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  box-shadow: 0 0 20px 0 #fbbd61;
-  /* background-color: #fbbd61; */
-  width: 0;
-  height: 0;
-  opacity: 0;
-  transition: 0.5s ease;
-}
+
 .NewFilmCard .container .item figure img {
   width: 270px;
   height: 340px;
   position: relative;
   transition: 0.5s ease-in-out;
+}
+
+.NewFilmCard .container .item .container {
+  position: relative;
+}
+.overlay::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  box-shadow: 0 0 20px 0 #fbbd61;
+  width: 0;
+  height: 0;
+  opacity: 0;
+  transition: 0.5s ease;
+  background: linear-gradient(to right, #ec7532 0%, #fbbd61 100%);
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+}
+
+.overlay button {
+  transform: translate(-50%, -50%);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: transparent;
+  border: 2px solid white;
+  color: white;
+  font-size: 16px;
+  opacity: 0;
+  transition: 0.5s ease;
+}
+.overlay .content {
+  position: absolute;
+  top: 38%;
+  left: 27%;
+}
+.overlay .content .icon {
+  font-size: 27px;
+  display: none;
+  width: 80px;
+  height: 80px;
+  color: #fff;
+}
+.overlay .content p {
+  font-size: 13px;
+  display: none;
+  margin-bottom: 10px;
+  cursor: pointer;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: #fff;
+}
+.overlay button:hover {
+  border-color: white;
+}
+
+.container:hover .overlay::before {
+  width: 100%;
+  height: 100%;
+  opacity: 0.8;
+}
+.container:hover .content::before {
+  display: block;
+}
+.container:hover .overlay button {
+  opacity: 1;
 }
 
 .NewFilmCard .container .item .title {

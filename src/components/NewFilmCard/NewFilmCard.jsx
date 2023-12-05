@@ -13,23 +13,25 @@ const NewFilmCard = ({ item }) => {
       <div className={styles.container}>
         {displayedItems.map((movie, index) => (
           <div key={index} className={styles.item}>
-            <figure>
+            <div className={styles.container}>
               <img
+                style={{ width: 200 }}
                 src={`https://image.tmdb.org/t/p/original${movie?.poster_path}`}
               />
-            </figure>
+              <div className={styles.overlay}>
+                <div className={styles.content}>
+                  <FaRegPlayCircle className={styles.icon} />
+                  <p>Read More</p>
+                </div>
+              </div>
+            </div>
             <h4 className={styles.title}>{movie.title}</h4>
             <div className={styles.stars}>
               {stars.map((starIndex) => (
                 <FaStar key={starIndex} className={styles.star} />
               ))}
             </div>
-            <div className={styles.readMore}>
-              <div className={styles.element}>
-                <FaRegPlayCircle className={styles.icon} />
-                <p>Read More</p>
-              </div>
-            </div>
+            <div className={styles.readMore}></div>
           </div>
         ))}
       </div>
